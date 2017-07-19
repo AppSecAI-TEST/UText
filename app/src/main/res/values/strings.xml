@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">UText</string>
+    <string name="app_name">U约圈</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="inputPhoneNumber">请输入手机号码</string>
+    <string name="phoneNumber_register">手机号码注册</string>
+    <string name="input_password">请输入密码</string>
+    <string name="getVerificationCode">获取短信验证码</string>
 </resources>
