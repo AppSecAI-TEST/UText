@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.liu.utext.App;
 import com.example.liu.utext.R;
 import com.example.liu.utext.component.DaggerMainComponent;
@@ -13,7 +12,6 @@ import com.example.liu.utext.module.MainModule;
 import com.example.liu.utext.presenter.MainPresenter;
 import com.example.liu.utext.util.BindView;
 import com.example.liu.utext.view.BaseView;
-
 import java.util.List;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements BaseView{
