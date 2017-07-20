@@ -6,4 +6,6 @@
     <string name="phoneNumber_register">手机号码注册</string>
     <string name="input_password">请输入密码</string>
     <string name="getVerificationCode">获取短信验证码</string>
+    <string name="inputVerificationCode">请输入验证码</string>
+    <string name="resend_code">重新获取验证码</string>
 </resources>

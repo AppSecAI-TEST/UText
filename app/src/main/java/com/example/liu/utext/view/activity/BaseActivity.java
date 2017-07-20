@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.liu.utext.presenter.BasePresenter;
+import com.example.liu.utext.util.ButterKnife;
 
 import javax.inject.Inject;
 
@@ -18,6 +19,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         setContentView(setLayoutId());
         setPresenter();
+        try {
+            ButterKnife.bind(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         init();
         ViewOnClick();
     }

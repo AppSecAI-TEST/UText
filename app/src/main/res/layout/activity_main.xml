@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="131dp"
         android:id="@+id/Icon"
+        android:layout_marginTop="84dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
