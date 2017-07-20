@@ -10,9 +10,13 @@ import com.example.liu.utext.App;
 import com.example.liu.utext.R;
 import com.example.liu.utext.component.DaggerMainComponent;
 import com.example.liu.utext.module.MainModule;
+import com.example.liu.utext.presenter.MainPresenter;
 import com.example.liu.utext.util.BindView;
+import com.example.liu.utext.view.BaseView;
 
-public class MainActivity extends BaseActivity {
+import java.util.List;
+
+public class MainActivity extends BaseActivity<MainPresenter> implements BaseView{
 
     @BindView(R.id.phoneNumber)
     private EditText mEditText1;
@@ -62,7 +66,9 @@ public class MainActivity extends BaseActivity {
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(MainActivity.this, ForgetPasswordActivity.class);
+                intent.putExtra("phoneNumber", mEditText1.getText().toString());
+                startActivity(intent);
             }
         });
     }
@@ -73,5 +79,15 @@ public class MainActivity extends BaseActivity {
             mEditText1.setText(data.getStringExtra("phoneNumber"));
             mEditText2.setText(data.getStringExtra("password"));
         }
+    }
+
+    @Override
+    public void showData(int id, List mData) {
+
+    }
+
+    @Override
+    public void showErrorMessage(int id, String message) {
+
     }
 }

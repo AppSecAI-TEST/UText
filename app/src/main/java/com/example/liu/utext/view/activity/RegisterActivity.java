@@ -7,15 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.liu.utext.R;
 import com.example.liu.utext.util.BindView;
 import com.example.liu.utext.util.CountTimerView;
 import com.example.liu.utext.util.SMSEventHandle;
 import com.example.liu.utext.util.ToastUtils;
-
 import cn.smssdk.SMSSDK;
-
 
 public class RegisterActivity extends BaseActivity {
 
@@ -88,7 +85,6 @@ public class RegisterActivity extends BaseActivity {
         intent.putExtra("phoneNumber", mEditText1.getText().toString());
         intent.putExtra("password", mEditText2.getText().toString());
         setResult(RESULT_OK, intent);
-        startActivity(intent);
         finish();
     }
 
