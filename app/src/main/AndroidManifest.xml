@@ -34,7 +34,10 @@
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
+        <activity android:name=".view.activity.ForgetPasswordActivity">
+        </activity>
 
         <meta-data
             android:name="Mob-AppKey"
@@ -42,9 +45,6 @@
         <meta-data
             android:name="Mob-AppSecret"
             android:value="a9ba7b8e6f9ee7fbc2b5d1a92ef14c87"/>
-
-        <activity android:name=".view.activity.ForgetPasswordActivity">
-        </activity>
     </application>
 
 </manifest>
