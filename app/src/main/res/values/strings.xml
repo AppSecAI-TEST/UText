@@ -11,4 +11,7 @@
     <string name="verify">验证</string>
     <string name="forget_password">忘记密码</string>
     <string name="new_password">请输入新密码</string>
+    <string name="schedule">行程</string>
+    <string name="group">小组</string>
+    <string name="appointment_circle">约圈</string>
 </resources>
