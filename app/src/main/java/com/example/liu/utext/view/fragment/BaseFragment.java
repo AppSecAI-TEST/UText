@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import com.example.liu.utext.App;
 import com.example.liu.utext.component.AppComponent;
 import com.example.liu.utext.presenter.BasePresenter;
+import com.example.liu.utext.util.ButterKnife;
 
 import javax.inject.Inject;
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     public App mApp;
+    public View mView;
 
     @Inject
     T presenter;
@@ -23,7 +25,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(setLayoutId(), container, false);
+        mView = inflater.inflate(setLayoutId(), container, false);
+        try {
+            ButterKnife.bind(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        init();
+        ViewOnClick();
+        return mView;
     }
 
     @Override
@@ -31,7 +41,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mApp = (App) getActivity().getApplication();
         setActivityComponent(mApp.getAppComponent());
-        init();
     }
 
     protected abstract int setLayoutId();
@@ -39,4 +48,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected abstract void setActivityComponent(AppComponent appComponent);
 
     protected abstract void init();
+
+    protected abstract void ViewOnClick();
 }

@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
 import com.example.liu.utext.R;
 import com.example.liu.utext.util.BindView;
 import com.example.liu.utext.view.BaseView;
@@ -12,7 +11,6 @@ import com.example.liu.utext.view.adapter.FragmentAdapter;
 import com.example.liu.utext.view.fragment.AppointmentCircleFragment;
 import com.example.liu.utext.view.fragment.GroupFragment;
 import com.example.liu.utext.view.fragment.ScheduleFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
