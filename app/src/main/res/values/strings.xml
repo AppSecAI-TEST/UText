@@ -14,4 +14,6 @@
     <string name="schedule">行程</string>
     <string name="group">小组</string>
     <string name="appointment_circle">约圈</string>
+    <string name="build">立即创建</string>
+    <string name="information">目前还没有行程，赶紧创建吧</string>
 </resources>

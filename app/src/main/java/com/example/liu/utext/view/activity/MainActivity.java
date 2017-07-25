@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements BaseVie
 
     @Override
     public void showData(int id, List mData) {
-        startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
+        startActivity(new Intent(MainActivity.this, ScheduleMainActivity.class));
     }
 
     @Override

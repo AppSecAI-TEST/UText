@@ -22,7 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.MainActivity">
-
         </activity>
         <activity android:name=".view.activity.RegisterActivity">
         </activity>
@@ -34,7 +33,7 @@
         </activity>
         <activity android:name=".view.activity.ForgetPasswordActivity">
         </activity>
-        <activity android:name=".view.activity.ScheduleActivity">
+        <activity android:name=".view.activity.ScheduleMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -48,6 +47,9 @@
         <meta-data
             android:name="Mob-AppSecret"
             android:value="a9ba7b8e6f9ee7fbc2b5d1a92ef14c87"/>
+
+        <activity android:name=".view.activity.ScheduleActivity">
+        </activity>
     </application>
 
 </manifest>

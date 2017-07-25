@@ -1,25 +1,24 @@
 package com.example.liu.utext.view.activity;
 
-import android.graphics.Color;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.example.liu.utext.R;
 import com.example.liu.utext.util.BindView;
+import com.example.liu.utext.util.ToastUtils;
 import com.example.liu.utext.view.BaseView;
-import com.example.liu.utext.view.adapter.FragmentAdapter;
-import com.example.liu.utext.view.fragment.AppointmentCircleFragment;
-import com.example.liu.utext.view.fragment.GroupFragment;
-import com.example.liu.utext.view.fragment.ScheduleFragment;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ScheduleActivity extends BaseActivity implements BaseView {
 
-    @BindView(R.id.viewPager)
-    private ViewPager viewPager;
-    @BindView(R.id.tabLayout)
-    private TabLayout tabLayout;
+    @BindView(R.id.recyclerView)
+    private RecyclerView mRecyclerView;
+    @BindView(R.id.information)
+    private TextView mTextView;
+    @BindView(R.id.build)
+    private Button mButton;
 
     @Override
     protected int setLayoutId() {
@@ -31,21 +30,9 @@ public class ScheduleActivity extends BaseActivity implements BaseView {
 
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     protected void init() {
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new ScheduleFragment());
-        fragments.add(new GroupFragment());
-        fragments.add(new AppointmentCircleFragment());
-        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
-        viewPager.setAdapter(fragmentAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setSelectedTabIndicatorHeight(0);
-        tabLayout.setTabTextColors(Color.GRAY, Color.GREEN);
-        tabLayout.getTabAt(0).setIcon(R.drawable.icon_schedule).setText(R.string.schedule);
-        tabLayout.getTabAt(1).setIcon(R.drawable.icon_group).setText(R.string.group);
-        tabLayout.getTabAt(2).setIcon(R.drawable.icon_appointment_circle).setText(R.string.appointment_circle);
+
     }
 
     @Override
@@ -55,11 +42,19 @@ public class ScheduleActivity extends BaseActivity implements BaseView {
 
     @Override
     public void showData(int id, List mData) {
-
+        if (mData == null){
+            mRecyclerView.setVisibility(View.GONE);
+            mTextView.setVisibility(View.VISIBLE);
+            mButton.setVisibility(View.VISIBLE);
+        }else{
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mTextView.setVisibility(View.GONE);
+            mButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showErrorMessage(int id, String message) {
-
+        ToastUtils.show(this, message);
     }
 }
