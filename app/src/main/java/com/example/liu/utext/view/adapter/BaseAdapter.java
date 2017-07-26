@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<T> mDatas;
     private int mLayoutId;
@@ -38,7 +38,7 @@ abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
         return mDatas.size();
     }
 
-    T getItem(int position) {
+    public T getItem(int position) {
         if (position >= mDatas.size()) return null;
         return mDatas.get(position);
     }
@@ -85,7 +85,7 @@ abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
         return mDatas;
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 
