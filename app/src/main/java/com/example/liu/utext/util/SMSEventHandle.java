@@ -34,7 +34,17 @@ public abstract class SMSEventHandle extends EventHandler {
                         JSONObject object = new JSONObject(resId.getMessage());
                         String des = object.optString("detail");
                         if (!TextUtils.isEmpty(des)) {
-                            Toast.makeText(mActivity, des, Toast.LENGTH_SHORT).show();
+                            if (des.equals("The verification code is empty")) {
+                                Toast.makeText(mActivity, "请输入验证码", Toast.LENGTH_SHORT).show();
+                            }else if (des.equals("Please input the correct phone number")) {
+                                Toast.makeText(mActivity, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+                            } else if (des.equals("Invalid validation code")){
+                                    Toast.makeText(mActivity, "验证码无效", Toast.LENGTH_SHORT).show();
+                            } else if (des.equals("Verification Code becomes invalid,Please request another one")){
+                                Toast.makeText(mActivity, "验证码已无效，请重新发送", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(mActivity, des, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     } catch (Exception var5) {
                         SMSLog.getInstance().w(var5);

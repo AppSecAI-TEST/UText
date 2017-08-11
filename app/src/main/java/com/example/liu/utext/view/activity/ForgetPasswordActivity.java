@@ -6,17 +6,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.liu.utext.App;
 import com.example.liu.utext.R;
+import com.example.liu.utext.component.DaggerForgetPasswordComponent;
+import com.example.liu.utext.module.ForgetPasswordModule;
+import com.example.liu.utext.presenter.ForgetPasswordPresenter;
 import com.example.liu.utext.util.BindView;
 import com.example.liu.utext.util.CountTimerView;
 import com.example.liu.utext.util.SMSEventHandle;
 import com.example.liu.utext.util.ToastUtils;
+import com.example.liu.utext.view.BaseView;
+
+import java.util.List;
+
 import cn.smssdk.SMSSDK;
 
-public class ForgetPasswordActivity extends BaseActivity {
+public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter> implements BaseView{
 
     @BindView(R.id.fg_phoneNumber)
     private EditText mEditText1;
+    @BindView(R.id.fg_password)
+    private EditText mEditText2;
     @BindView(R.id.fg_verificationCode)
     private EditText mEditText3;
     @BindView(R.id.fg_getVerificationCode)
@@ -32,7 +43,11 @@ public class ForgetPasswordActivity extends BaseActivity {
 
     @Override
     protected void setPresenter() {
-
+        DaggerForgetPasswordComponent.builder()
+                .appComponent(((App) getApplication()).getAppComponent())
+                .forgetPasswordModule(new ForgetPasswordModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -73,8 +88,11 @@ public class ForgetPasswordActivity extends BaseActivity {
         return true;
     }
 
+    private void updatePassword() {
+        presenter.requestData(1, mEditText1.getText().toString(), mEditText2.getText().toString());
+    }
+
     private void returnMainActivity() {
-        Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -82,6 +100,16 @@ public class ForgetPasswordActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(mMyEventHandle);
+    }
+
+    @Override
+    public void showData(int id, String message, List mData) {
+        ToastUtils.show(this, message);
+    }
+
+    @Override
+    public void showErrorMessage(int id, String message) {
+        ToastUtils.show(this, message);
     }
 
     private class MyEventHandle extends SMSEventHandle {
@@ -99,6 +127,7 @@ public class ForgetPasswordActivity extends BaseActivity {
 
         @Override
         public void afterSubmitCode() {
+            updatePassword();
             returnMainActivity();
         }
     }

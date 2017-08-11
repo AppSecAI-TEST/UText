@@ -11,6 +11,7 @@ import com.example.liu.utext.component.DaggerMainComponent;
 import com.example.liu.utext.module.MainModule;
 import com.example.liu.utext.presenter.MainPresenter;
 import com.example.liu.utext.util.BindView;
+import com.example.liu.utext.util.ToastUtils;
 import com.example.liu.utext.view.BaseView;
 import java.util.List;
 
@@ -80,12 +81,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements BaseVie
     }
 
     @Override
-    public void showData(int id, List mData) {
+    public void showData(int id, String message, List mData) {
+        ToastUtils.show(this, message);
         startActivity(new Intent(MainActivity.this, ScheduleMainActivity.class));
     }
 
     @Override
     public void showErrorMessage(int id, String message) {
-
+        ToastUtils.show(this, message);
     }
 }

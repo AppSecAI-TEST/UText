@@ -53,8 +53,9 @@ public class ScheduleMainActivity extends BaseActivity implements BaseView {
 
     }
 
+
     @Override
-    public void showData(int id, List mData) {
+    public void showData(int id, String message, List mData) {
 
     }
 

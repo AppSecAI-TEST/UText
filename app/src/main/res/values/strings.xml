@@ -23,4 +23,7 @@
     <string name="Thursday">四</string>
     <string name="Friday">五</string>
     <string name="Saturday">六</string>
+    <string name="create_schedule">创建行程</string>
+    <string name="update_schedule">修改行程</string>
+    <string name="delete_schedule">删除行程</string>
 </resources>

@@ -17,6 +17,9 @@ public class ScheduleAdapter extends BaseAdapter<Schedule>{
 
     @Override
     protected void convert(BaseViewHolder holder, Schedule item) {
-
+        holder.getTextView(R.id.schedule_date).setText(item.getDate());
+        holder.getTextView(R.id.schedule_time).setText(item.getTime());
+        holder.getTextView(R.id.schedule_place).setText(item.getPlace());
+        holder.getTextView(R.id.schedule_content).setText(item.getContent());
     }
 }

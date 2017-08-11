@@ -1,6 +1,8 @@
 package com.example.liu.utext.module;
 
 import com.example.liu.utext.model.http.ApiService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
@@ -16,9 +18,12 @@ public class HttpModule {
     @Singleton
     @Provides
     public static ApiService provideApiService(){
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         return new Retrofit.Builder()
                 .baseUrl(ApiService.BaseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(ApiService.class);

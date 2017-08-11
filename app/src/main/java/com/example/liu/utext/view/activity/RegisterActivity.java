@@ -8,15 +8,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.liu.utext.App;
 import com.example.liu.utext.R;
+import com.example.liu.utext.component.DaggerRegisterComponent;
+import com.example.liu.utext.module.RegisterModule;
+import com.example.liu.utext.presenter.RegisterPresenter;
 import com.example.liu.utext.util.BindView;
 import com.example.liu.utext.util.CountTimerView;
 import com.example.liu.utext.util.SMSEventHandle;
 import com.example.liu.utext.util.ToastUtils;
+import com.example.liu.utext.view.BaseView;
+
+import java.util.List;
 
 import cn.smssdk.SMSSDK;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements BaseView{
 
     @BindView(R.id.register_phoneNumber)
     private EditText mEditText1;
@@ -28,6 +35,7 @@ public class RegisterActivity extends BaseActivity {
     private Button mButton1;
     @BindView(R.id.verify)
     private Button mButton2;
+
     private MyEventHandle mMyEventHandle;
 
     @Override
@@ -37,7 +45,11 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void setPresenter() {
-
+        DaggerRegisterComponent.builder()
+                .registerModule(new RegisterModule(this))
+                .appComponent(((App)getApplication()).getAppComponent())
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -78,12 +90,11 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void AddNewUser() {
-
+        presenter.requestData(1, mEditText1.getText().toString(), mEditText2.getText().toString());
     }
 
     private void returnMainActivity() {
-        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent();
         intent.putExtra("phoneNumber", mEditText1.getText().toString());
         intent.putExtra("password", mEditText2.getText().toString());
         setResult(RESULT_OK, intent);
@@ -94,6 +105,16 @@ public class RegisterActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(mMyEventHandle);
+    }
+
+    @Override
+    public void showData(int id, String message, List mData) {
+        ToastUtils.show(this, message);
+    }
+
+    @Override
+    public void showErrorMessage(int id, String message) {
+        ToastUtils.show(this, message);
     }
 
     private class MyEventHandle extends SMSEventHandle{
